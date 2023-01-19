@@ -3,9 +3,7 @@ package utils
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io"
-	"log"
 	"net/http"
 )
 
@@ -15,14 +13,8 @@ func GetRequestBody(body interface{}) io.Reader {
 }
 
 func GetResponseBody(response *http.Response) interface{} {
-	resp, err := io.ReadAll(response.Body)
-	if err != nil {
-		log.Fatalln("A Fatal error occurred", err)
-	}
+	resp, _ := io.ReadAll(response.Body)
 	var responseBody interface{}
-	error := json.Unmarshal(resp, &responseBody)
-	if err != nil {
-		fmt.Println("error:", error)
-	}
+	json.Unmarshal(resp, &responseBody)
 	return responseBody
 }

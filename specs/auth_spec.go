@@ -18,6 +18,8 @@ var _ = Describe("Auth test suite", func() {
 	})
 
 	Context("Negative Scenarios", func() {
+		/* This test case should assert for bad request status code by logic,
+		but it returns 200 so, it's handled like that... */
 		It("Should return bad request after trying invalid credentials", func() {
 			response := endpoints.CreateToken("adminzz", "123")
 

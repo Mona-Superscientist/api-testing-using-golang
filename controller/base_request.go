@@ -17,7 +17,7 @@ func makeRequest(method, url string, body io.Reader) *http.Request {
 
 func makeRequestWithAuthToken(method, url string, body io.Reader, token string) *http.Request {
 	request := makeRequest(method, url, body)
-	request.Header.Set("Cookie", "token:"+token)
+	request.Header.Set("Cookie", "token="+token)
 	return request
 }
 
