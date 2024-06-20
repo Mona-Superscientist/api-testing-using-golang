@@ -5,6 +5,7 @@ import (
 	"api-testing-example/controller/endpoints"
 	"api-testing-example/model"
 	"api-testing-example/utils"
+	"fmt"
 	"reflect"
 
 	. "github.com/onsi/ginkgo/v2"
@@ -47,6 +48,26 @@ var _ = Describe("Booking Test Suite", func() {
 			It("Should create a new booking successfully", func() {
 				response := endpoints.CreateBooking(booking, token)
 				controller.Assert_StatusOK(response)
+			})
+		})
+	})
+
+	Describe("Delete Booking", func() {
+		Context("Happy Scenario", func() {
+			var token string
+			var booking model.Booking
+
+			BeforeEach(func() {
+				By("Create token, create booking, get booking id", func() {
+					token = endpoints.GetAuthToken("admin", "password123")
+					booking = utils.GenerateBooking()
+					response := endpoints.CreateBooking(booking, token)
+					fmt.Println(response)
+				})
+			})
+
+			It("Should delete booking successfully", func() {
+
 			})
 		})
 	})
