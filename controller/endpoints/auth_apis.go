@@ -1,6 +1,7 @@
 package endpoints
 
 import (
+	"api-testing-example/constants"
 	"api-testing-example/controller"
 	"api-testing-example/model"
 	"api-testing-example/utils"
@@ -16,7 +17,9 @@ func CreateToken(username, password string) *http.Response {
 		Password: password,
 	}
 
-	response := controller.MakePostRequest("/auth", "", utils.GetRequestBody(credentials))
+	response := controller.MakePostRequest(
+		constants.AuthURL, "", utils.GetRequestBody(credentials),
+	)
 	return response
 }
 
